@@ -1,0 +1,421 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Swiper demo</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+
+		<link rel="stylesheet" href="css/swiper.min.css">
+		<style type="text/css">
+			body{
+				margin: 0;
+				background-color: #eaddcd;
+			}
+
+			.music{
+				position: absolute;
+				right: 10px;
+				top: 10px;
+				width: 32px;
+				height: 32px;
+				background-image: url(images/player.png);
+				background-size: cover;
+				z-index: 2;
+				background-color: transparent;
+				border:none;
+				-webkit-animation-name: turn;
+				-webkit-animation-timing-function: cubic-bezier(1, 1, 0, 0);
+				-webkit-animation-duration: 2s;
+				-webkit-animation-iteration-count: infinite;
+				}
+				@keyframes turn
+				{
+					from {transform:rotate(0deg);}
+					to {transform:rotate(360deg);}
+				}
+
+
+
+			.swiper-slide{
+				position: relative;
+			}
+
+				.swiper-slide .pub-passdown {
+					position: absolute;
+					width: 10%;
+					left: 45%;
+					bottom: 4%;
+					-webkit-animation-name: passdown;
+					-webkit-animation-timing-function: ease;
+					-webkit-animation-duration: 0.8s;
+					-webkit-animation-iteration-count: infinite;
+				}
+				@keyframes passdown
+				{
+					0%   {bottom:5%;}
+					50%  {bottom:3.2%;}
+					100% {bottom:5%;}
+				}
+
+				@-moz-keyframes passdown /* Firefox */
+				{
+					0%   {bottom:5%;}
+					50%  {bottom:3.2%;}
+					100% {bottom:5%;}
+				}
+
+				@-webkit-keyframes passdown /* Safari 和 Chrome */
+				{
+					0%   {bottom:5%;}
+					50%  {bottom:3.2%;}
+					100% {bottom:5%;}
+				}
+
+				@-o-keyframes passdown /* Opera */
+				{
+ 					0%   {bottom:5%;}
+					50%  {bottom:3.2%;}
+					100% {bottom:5%;}
+				}
+				.swiper-slide .pub-passdown img{
+					width: 100%;
+				}
+
+					/*第一屏*/
+					.swiper-slide .anm1{
+						position: absolute;
+						top: 10%;
+  						left: 35%;
+						opacity: 0;
+					}
+
+					.swiper-slide .anm2{
+						position: absolute;
+						top: 5%;
+						left: 55%;
+						opacity: 0;
+					}
+					/*.swiper-slide .anm{
+						display: none;
+					}*/
+					.swiper-slide-active .anm .anm1{
+						opacity: 1;
+						-webkit-transition: all 0.5s ease-in;
+					}
+					.swiper-slide-active .anm .anm2{
+						opacity: 1;
+						-webkit-transition: all 0.5s ease-in 0.6s;
+					}
+
+					@media only screen and (max-height: 480px){
+						.swiper-slide .anm1 img{
+							max-height: 180px;
+						}
+						.swiper-slide .anm2{
+							left: 65%;
+						}
+						.swiper-slide .anm2 img{
+							max-height: 180px;
+						}
+					}
+					@media only screen and (max-height: 568px) and (min-height: 480px){
+						.swiper-slide .anm1 img{
+							max-height: 210px;
+						}
+						.swiper-slide .anm2{
+							left: 65%;
+						}
+						.swiper-slide .anm2 img{
+							max-height: 240px;
+						}
+					}
+					@media only screen and (max-height: 667px) and (min-height: 568px){
+						.swiper-slide .anm1 img{
+							max-height: 210px;
+						}
+						.swiper-slide .anm2{
+							left: 65%;
+						}
+						.swiper-slide .anm2 img{
+							max-height: 300px;
+						}
+					}
+
+				.swiper-slide .box {
+					position: relative;
+					padding-top: 30px;
+					width: 100%;
+					text-align: center;
+				}
+				.swiper-slide .box input{
+					height: 40px;
+					text-align: center;
+					margin: 10px 0;
+					border: none;
+					border-bottom: 1px dotted #996666;
+					background-color: transparent;
+					color: #9B6957;
+				}
+				.swiper-slide .box button{
+					height: 60px;
+					width: 60px;
+					border-radius: 30px;
+					border: none;
+					background-color: #9B6957;
+					color: #fff;
+				}
+
+				.swiper-slide .box p{
+					display: none;
+				}
+
+
+				.swiper-slide .share{
+					position: absolute;
+					top: 0;
+					width: 100%;
+					background-color: rgba(0,0,0,0.75);
+					display: none;
+					z-index: 1;
+				}
+				.swiper-slide .share p{
+					color: #fff;
+					text-align: center;
+				}
+				.swiper-slide .sharebtn{
+					position: absolute;
+					width: 100%;
+					bottom: 30px;
+					text-align: center;
+				}
+				.swiper-slide .sharebtn button{
+					background-color: transparent;
+					border: 1px dotted #333;
+					padding: 8px 36px;
+					font-size: 14px;
+					border-radius: 8px;
+				}
+		</style>
+	</head>
+	<body>
+	<!--滴滴打车 http://static.diditaxi.com.cn/site/pages/thank-2014/index.html?from=timeline&isappinstalled=0 -->
+		<button onclick="playNow();" class="music" id="music" type="button"></button>
+		<audio id="player" loop="loop" autoplay="autoplay">
+			<source src="media/song.mp3" type="audio/mpeg">
+			Your browser does not support the audio element.
+		</audio>
+		
+		<div class="swiper-container" id="container">
+			<div class="swiper-wrapper" id="wrapper">
+				<div class="swiper-slide" id="slideone">
+					<div class="anm">
+						<div class="anm1"><img src="images/p1_1.png"></div>
+						<div class="anm2"><img src="images/p1_2.png"></div>
+					</div>
+					<div class="pub-passdown"><img src="images/pub-1.png"></div>
+				</div>
+				<div class="swiper-slide" id="slidetwo">
+					<div class="anm">
+						<div class="anm1"><img src="images/p2_1.png"></div>
+						<div class="anm2"><img src="images/p2_2.png"></div>
+					</div>
+					<div class="pub-passdown"><img src="images/pub-1.png"></div>
+				</div>
+				<div class="swiper-slide" id="slidethree">
+					<div class="anm">
+						<div class="anm1"><img src="images/p3_1.png"></div>
+						<div class="anm2"><img src="images/p3_2.png"></div>
+					</div>
+					<div class="pub-passdown"><img src="images/pub-1.png"></div>
+				</div>
+				<div class="swiper-slide" id="slidefour">
+					<div class="anm">
+						<div class="anm1"><img src="images/p4_1.png"></div>
+						<div class="anm2"><img src="images/p4_2.png"></div>
+					</div>
+					<div class="pub-passdown"><img src="images/pub-1.png"></div>
+				</div>
+				<div class="swiper-slide" id="slidefive">
+					<div class="anm">
+						<div class="anm1"><img src="images/p5_1.png"></div>
+						<div class="anm2"><img src="images/p5_2.png"></div>
+					</div>
+					<div class="pub-passdown"><img src="images/pub-1.png"></div>
+				</div>
+				<div class="swiper-slide" id="slidesix">
+					<div class="anm">
+						<div class="anm1"><img src="images/p6_1.png"></div>
+						<div class="anm2"><img src="images/p6_2.png"></div>
+					</div>
+					<div class="pub-passdown"><img src="images/pub-1.png"></div>
+				</div>
+				<div class="swiper-slide" id="slideseven">
+					<div class="anm">
+						<div class="anm1"><img src="images/p7_1.png"></div>
+						<div class="anm2"><img src="images/p7_2.png"></div>
+					</div>
+					<div class="pub-passdown"><img src="images/pub-1.png"></div>
+				</div>
+				<div class="swiper-slide" id="slideeight">
+					<div class="anm">
+						<div class="anm1"><img src="images/p8_1.png"></div>
+						<div class="anm2"><img src="images/p8_2.png"></div>
+					</div>
+					<div class="pub-passdown"><img src="images/pub-1.png"></div>
+				</div>
+
+
+				<div class="swiper-slide" id="slidenight">
+					<div class="box">
+						<input id="dadage" class="dadage" type="text" placeholder="今年老爸多少岁？">
+						<br />
+						<input id="days" class="days" type="text" placeholder="每年陪老爸多少天？">
+						<br />
+						<button id="submit" type="submit">显示</button>
+						<p class="years" id="years"></p>
+						<p class="hours" id="hours"></p>
+						<p class="seconds" id="seconds"></p>
+						<p class="times" id="times"></p>
+						<p class="dad" id="dad"></p>
+						<p class="sss" id="sss"></p>
+					</div>
+					<div class="share"  id="share">
+						<p>分享到朋友圈</p>
+					</div>
+					<div class="sharebtn" id="btn">
+						<button id="sharebtn" type="button">分享</button>
+					</div>
+				</div>
+			</div>
+
+
+			<!-- 如果需要分页器 -->
+			<!-- <div class="swiper-pagination"></div> -->
+		    
+			<!-- 如果需要导航按钮 -->
+			<!-- <div class="swiper-button-prev"></div>
+			<div class="swiper-button-next"></div> -->
+		    
+			<!-- 如果需要滚动条 -->
+			<!-- <div class="swiper-scrollbar"></div> -->
+		</div>
+	</body>
+
+	<script src="js/jquery-1.10.1.min.js"></script>
+	<script src="js/swiper.jquery.min.js"></script>
+	<script type="text/javascript">
+		//控制音乐播放
+		var myAideo=document.getElementById("player");
+		//myAideo.volume(0.2);
+		function playNow(){
+			myAideo.pause();
+			$("#music").attr("style","animation-play-state:paused;");
+		}
+
+		$(document).ready(function () {
+			/*兼容移动设备*/
+			//alert("宽度" + $(window).width() + ";高度" + $(window).height());
+
+			var h = $(window).height();
+			$("#wrapper").attr("style","height:" + h +"px");
+			$("#slideone").attr("style","background-image:url(images/p1.jpg);" + "background-size:cover;" + "background-position:center;");
+			$("#slidetwo").attr("style","background-image:url(images/p2.jpg);" + "background-size:cover;" + "background-position:center;");
+			$("#slidethree").attr("style","background-image:url(images/p3.jpg);" + "background-size:cover;" + "background-position:center;");
+			$("#slidefour").attr("style","background-image:url(images/p4.jpg);" + "background-size:cover;" + "background-position:center;");
+			$("#slidefive").attr("style","background-image:url(images/p5.jpg);" + "background-size:cover;" + "background-position:center;");
+			$("#slidesix").attr("style","background-image:url(images/p6.jpg);" + "background-size:cover;" + "background-position:center;");
+			$("#slideseven").attr("style","background-image:url(images/p7.jpg);" + "background-size:cover;" + "background-position:center;");
+			$("#slideeight").attr("style","background-image:url(images/p8.jpg);" + "background-size:cover;" + "background-position:center;");
+			$("#share").attr("style","height:" + h +"px");
+			//$("#btn").attr("style","height:" + h +"px");
+			
+			/*时间换算*/
+			$("#submit").click(function(){
+				if($("#dadage").val().length == 0 ){
+					$("#dadage").focus()
+					return false;
+				}
+				if($("#days").val().length == 0 ){
+					$("#days").focus()
+					return false;
+				}
+
+				//$("#years").attr("style","opacity: 1;-webkit-transition: all 0.5s ease-in;");
+
+				var ss = (85 - $("#dadage").val()) * 365 * 24 * 60 * 60;
+
+				setInterval(function(){
+					ss -= 1;
+					$("#years").text("这辈子还能陪老爸" + (85 - $("#dadage").val()) + "年");
+					$("#hours").text("这辈子还能陪老爸" + ((85 - $("#dadage").val()) * 365 * 24) + "小时");
+					$("#seconds").text("这辈子还能陪老爸" + ss + "秒！");
+
+					var s = ss;
+					var m = 0;
+					var h = 0;
+					var d = 0;
+					var y = 0;
+
+					if(s > 60) {
+						m = s/60;
+						s = s%60;
+						if(m > 60){
+							h = m/60;
+							m = m%60;
+							if(h > 24){
+								d = h/24;
+								h = h%24;
+								if(d >= 365){
+									y = d/365;
+									d = d%365;
+								}
+							}
+						}
+					}
+
+
+					$("#times").text("还能陪老爸" + y + "年" + parseInt(d) + "天" + parseInt(h) + "小时" + parseInt(m) + "分" + s + "秒");
+					var days = $("#days").val();
+					$("#dad").text("这辈子还能陪老爸" + ((85 - $("#dadage").val()) * days) + "天");
+				},1000)
+				$("#dadage").hide(500);
+				$("#days").hide(500);
+				$("#submit").hide(500);
+
+				$("#years").fadeIn(3000);
+				$("#hours").fadeIn(3000);
+				$("#seconds").fadeIn(3000);
+				$("#times").fadeIn(3000);
+				$("#dad").fadeIn(3000);
+				$("#sss").fadeIn(3000);
+			})
+
+			/*插件配置*/
+			var mySwiper = new Swiper ('.swiper-container', {
+			direction: 'vertical',
+			speed:250
+
+
+			// 如果需要分页器
+			//pagination: '.swiper-pagination',
+
+			// 如果需要前进后退按钮
+			//nextButton: '.swiper-button-next',
+			//prevButton: '.swiper-button-prev',
+
+			// 如果需要滚动条
+			//scrollbar: '.swiper-scrollbar',
+			})
+
+
+
+			$("#sharebtn").click(function(){
+				$("#share").attr("style","display:block;height:" + h +"px");
+			})
+
+			$("#share").click(function(){
+				$("#share").removeAttr("style");
+			})
+		})
+	</script>
+</html>
